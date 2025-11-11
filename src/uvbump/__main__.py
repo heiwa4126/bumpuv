@@ -15,12 +15,7 @@ def main() -> None:
         default="bump",
         help="Version to set or bump type (major|minor|patch|bump)",
     )
-    parser.add_argument(
-        "-t",
-        "--test",
-        action="store_true",
-        help="Use test- prefix for tag instead of v",
-    )
+
     parser.add_argument(
         "--dry-run",
         action="store_true",
@@ -30,7 +25,7 @@ def main() -> None:
     args = parser.parse_args()
 
     try:
-        version_info = update_version(args.version, args.test, args.dry_run)
+        version_info = update_version(args.version, args.dry_run)
 
         # Display results
         print(f"Updated: {version_info.path}")

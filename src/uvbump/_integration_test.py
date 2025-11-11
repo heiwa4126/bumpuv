@@ -98,14 +98,15 @@ def test_explicit_version_set(temp_project):
     assert result.tag == "v1.5.0"
 
 
-def test_test_tag_option(temp_project):
-    """Test -t option for test tag."""
+def test_prerelease_tag_prefix(temp_project):
+    """Test automatic tag prefix for pre-release versions."""
     project_dir, repo = temp_project
 
-    result = update_version("patch", test_tag=True)
+    # Test pre-release version gets test- prefix
+    result = update_version("1.1.0a1")
 
-    assert result.tag == "test-1.0.1"
-    assert "test-1.0.1" in [tag.name for tag in repo.tags]
+    assert result.tag == "test-1.1.0a1"
+    assert "test-1.1.0a1" in [tag.name for tag in repo.tags]
 
 
 def test_dry_run_mode(temp_project):

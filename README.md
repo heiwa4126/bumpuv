@@ -10,7 +10,7 @@
 Astral uv (や poetry 等 PEP 621)の pyproject.toml に対して `npm version` に似た CLI "uvbump" を Python で作りたい。
 
 usage:
-uvbump[<newversion> | major | minor | patch | bump][-t][--dry-run][-h|--help]
+uvbump[<newversion> | major | minor | patch | bump][--dry-run][-h|--help]
 
 - デフォルトは `uvbump bump` に等価
 - cwd に pyproject.toml がない、または project.version がない、project.version が PEP440 でない場合はエラー
@@ -26,7 +26,7 @@ uvbump[<newversion> | major | minor | patch | bump][-t][--dry-run][-h|--help]
 - .gitignore されたファイルは無視
 - npm version 同様、pyproject.toml の project.version を書き換えたのちコミットしてタグをつける
   - コミットメッセージは `{新しいversion}`
-  - タグは `-t` オプションで `test-{新しいversion}`, -t オプションがない場合は `v{新しいversion}`をつける
+  - タグは pre バージョンなら `test-{新しいversion}`, そうでない場合は `v{新しいversion}`をつける
 - git push はしない
 - 対象となった pyproject.toml のパス、前バージョン文字列、変更後バージョン文字列、コミットメッセージ、タグを表示する
 - `--dry-run` オプションがある。表示のみで変更を行わない

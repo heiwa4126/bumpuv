@@ -10,6 +10,10 @@ except ImportError:
     import tomli as tomllib  # type: ignore[import-not-found,no-redef]
 import tomli_w
 
+# Tag prefix constants
+PRERELEASE_TAG_PREFIX = "test-"
+RELEASE_TAG_PREFIX = "v"
+
 
 @dataclass
 class VersionInfo:
@@ -87,9 +91,7 @@ def check_git_status(repo: git.Repo) -> None:
         raise UvbumpError("Repository has staged changes")
 
 
-def update_version(
-    new_version: str, test_tag: bool = False, dry_run: bool = False
-) -> VersionInfo:
+def update_version(new_version: str, dry_run: bool = False) -> VersionInfo:
     """Update version in pyproject.toml and create git commit and tag."""
     # Find pyproject.toml
     pyproject_path = Path.cwd() / "pyproject.toml"
@@ -125,7 +127,8 @@ def update_version(
     # Prepare version info
     new_version_str = str(new_version_obj)
     commit_message = new_version_str
-    tag = f"test-{new_version_str}" if test_tag else f"v{new_version_str}"
+    tag_prefix = PRERELEASE_TAG_PREFIX if new_version_obj.is_prerelease else RELEASE_TAG_PREFIX
+    tag = f"{tag_prefix}{new_version_str}"
 
     version_info = VersionInfo(
         path=str(pyproject_path.absolute()),

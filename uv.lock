@@ -376,7 +376,7 @@ wheels = [
 
 [[package]]
 name = "uvbump"
-version = "0.2.0a2"
+version = "0.0.1a0"
 source = { editable = "." }
 dependencies = [
     { name = "gitpython" },
