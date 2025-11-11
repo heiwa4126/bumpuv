@@ -22,13 +22,13 @@ uvbump[<newversion> | major | minor | patch | bump][-t][--dry-run][-h|--help]
 - pre バージョンから通常バージョン、あるいはその逆は major | minor | patch | bump ではできない。newversion を明示的に指定すること
 - git の操作は GitPython を使う
 - npm version 同様 、事前にコミットされていない場合はエラー。unstaged files, staged changes がある場合も安全のためエラー。
-- git repositoryでない場合はエラー
-- .gitignoreされたファイルは無視
+- git repository でない場合はエラー
+- .gitignore されたファイルは無視
 - npm version 同様、pyproject.toml の project.version を書き換えたのちコミットしてタグをつける
   - コミットメッセージは `{新しいversion}`
   - タグは `-t` オプションで `test-{新しいversion}`, -t オプションがない場合は `v{新しいversion}`をつける
 - git push はしない
 - 対象となった pyproject.toml のパス、前バージョン文字列、変更後バージョン文字列、コミットメッセージ、タグを表示する
 - `--dry-run` オプションがある。表示のみで変更を行わない
-- uvbumpの設定ファイルはいまのところ無し
-- monorepo対応はそのうち
+- uvbump の設定ファイルはいまのところ無し
+- monorepo 対応はそのうち
