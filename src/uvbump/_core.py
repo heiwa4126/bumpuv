@@ -141,7 +141,7 @@ def update_version(new_version: str, test_tag: bool = False, dry_run: bool = Fal
         # Git commit and tag
         repo.index.add([str(pyproject_path)])
         repo.index.commit(commit_message)
-        repo.create_tag(tag)
+        repo.create_tag(tag, message=commit_message)
     
     return version_info
 
