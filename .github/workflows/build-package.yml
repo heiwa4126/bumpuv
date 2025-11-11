@@ -26,8 +26,8 @@ jobs:
 
       - name: Set up Python environment (default)
         run: uv python install
-      - name: Set up Python environment (3.10)
-        run: uv python install 3.10
+      # - name: Set up Python environment (3.10)
+      #   run: uv python install 3.10
 
       - name: Build distribution packages
         id: build
