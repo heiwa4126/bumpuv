@@ -341,8 +341,8 @@ def test_version_bump_with_uv_lock(temp_project_with_uv_lock, monkeypatch):
     project_dir, repo = temp_project_with_uv_lock
 
     # Mock subprocess.run to simulate uv version command
-    import subprocess
-    
+    # import subprocess
+
     def mock_run(cmd, **kwargs):
         if cmd == ["uv", "version", "1.0.1"]:
             # Simulate uv version updating both files
@@ -351,7 +351,7 @@ def test_version_bump_with_uv_lock(temp_project_with_uv_lock, monkeypatch):
             content = content.replace('version = "1.0.0"', 'version = "1.0.1"')
             with open("pyproject.toml", "w") as f:
                 f.write(content)
-            
+
             with open("uv.lock", "r") as f:
                 content = f.read()
             content = content.replace('version = "1.0.0"', 'version = "1.0.1"')
@@ -359,7 +359,7 @@ def test_version_bump_with_uv_lock(temp_project_with_uv_lock, monkeypatch):
                 f.write(content)
             return subprocess.CompletedProcess(cmd, 0)
         return subprocess.run(cmd, **kwargs)
-    
+
     monkeypatch.setattr(subprocess, "run", mock_run)
 
     result = update_version("patch")
