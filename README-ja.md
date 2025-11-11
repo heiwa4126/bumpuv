@@ -9,7 +9,8 @@
 
 `npm version` に似た CLI を Python で書いたもの。参考: [npm-version](https://docs.npmjs.com/cli/v11/commands/npm-version)
 
-Astral uv (や poetry 等 PEP 621 準拠)の pyproject.toml に対して `npm version` 同様の処理を行う。主に GitHub Actions の発火に使用する。
+[Astral uv](https://docs.astral.sh/uv/)
+(や poetry 等 PEP 621 準拠)の pyproject.toml に対して `npm version` 同様の処理を行う。主に GitHub Actions の発火に使用する。
 
 ## インストールと実行方法
 
