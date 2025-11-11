@@ -7,7 +7,9 @@
 
 English | [日本語](https://github.com/heiwa4126/bumpuv/blob/main/README-ja.md)
 
-A CLI tool similar to `npm version` written in Python. Reference: [npm-version](https://docs.npmjs.com/cli/v11/commands/npm-version)
+A CLI tool similar to `npm version` and `uv version --bump` written in Python.
+`uv version --bump` with added git processing.
+Reference: [npm-version](https://docs.npmjs.com/cli/v11/commands/npm-version)
 
 Performs `npm version`-like operations on pyproject.toml files for [Astral uv](https://docs.astral.sh/uv/) (and poetry, etc. PEP 621 compliant tools). Primarily used for triggering GitHub Actions.
 

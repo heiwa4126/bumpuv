@@ -7,7 +7,9 @@
 
 [English](https://github.com/heiwa4126/bumpuv/blob/main/README.md) | 日本語
 
-`npm version` に似た CLI を Python で書いたもの。参考: [npm-version](https://docs.npmjs.com/cli/v11/commands/npm-version)
+`npm version` に似た CLI を Python で書いたもの。
+`uv version --bump` に git の処理が追加されている。
+参考: [npm-version](https://docs.npmjs.com/cli/v11/commands/npm-version)
 
 [Astral uv](https://docs.astral.sh/uv/)
 (や poetry 等 PEP 621 準拠)の pyproject.toml に対して `npm version` 同様の処理を行う。主に GitHub Actions の発火に使用する。

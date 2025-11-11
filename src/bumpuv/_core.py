@@ -164,7 +164,9 @@ def update_version(new_version: str, dry_run: bool = False) -> VersionInfo:
         # Update version using uv if uv.lock exists, otherwise update pyproject.toml directly
         if uv_lock_path.exists():
             try:
-                subprocess.run(["uv", "version", new_version_str], check=True, cwd=Path.cwd())
+                subprocess.run(
+                    ["uv", "version", new_version_str], check=True, cwd=Path.cwd()
+                )
             except subprocess.CalledProcessError as e:
                 raise bumpuvError(f"Failed to update version with uv: {e}")
         else:
