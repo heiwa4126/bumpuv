@@ -154,6 +154,7 @@ Tag: test-2.0.0a1
 ## 似たツール
 
 - [npm-version](https://docs.npmjs.com/cli/v11/commands/npm-version)
+- [uv version](https://docs.astral.sh/uv/reference/cli/#uv-version) `--bump` オプション
 - [pybump](https://pypi.org/project/pybump/)
 - [bump2version](https://pypi.org/project/bump2version/)
 - [bump-my-version](https://pypi.org/project/bump-my-version/)

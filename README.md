@@ -153,6 +153,7 @@ Tag: test-2.0.0a1
 ## Similar Tools
 
 - [npm-version](https://docs.npmjs.com/cli/v11/commands/npm-version)
+- [uv version](https://docs.astral.sh/uv/reference/cli/#uv-version) `--bump` option
 - [pybump](https://pypi.org/project/pybump/)
 - [bump2version](https://pypi.org/project/bump2version/)
 - [bump-my-version](https://pypi.org/project/bump-my-version/)

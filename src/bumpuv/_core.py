@@ -1,3 +1,4 @@
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -111,8 +112,9 @@ def check_git_status(repo: git.Repo, dry_run: bool = False) -> None:
 
 def update_version(new_version: str, dry_run: bool = False) -> VersionInfo:
     """Update version in pyproject.toml and create git commit and tag."""
-    # Find pyproject.toml
+    # Find pyproject.toml and uv.lock
     pyproject_path = Path.cwd() / "pyproject.toml"
+    uv_lock_path = Path.cwd() / "uv.lock"
 
     # Load and validate current version
     data = load_pyproject_toml(pyproject_path)
@@ -159,12 +161,21 @@ def update_version(new_version: str, dry_run: bool = False) -> VersionInfo:
     )
 
     if not dry_run:
-        # Update pyproject.toml
-        data["project"]["version"] = new_version_str
-        save_pyproject_toml(pyproject_path, data)
+        # Update version using uv if uv.lock exists, otherwise update pyproject.toml directly
+        if uv_lock_path.exists():
+            try:
+                subprocess.run(["uv", "version", new_version_str], check=True, cwd=Path.cwd())
+            except subprocess.CalledProcessError as e:
+                raise bumpuvError(f"Failed to update version with uv: {e}")
+        else:
+            # Update pyproject.toml directly
+            data["project"]["version"] = new_version_str
+            save_pyproject_toml(pyproject_path, data)
 
         # Git commit and tag
         repo.index.add([str(pyproject_path)])
+        if uv_lock_path.exists():
+            repo.index.add([str(uv_lock_path)])
         repo.index.commit(commit_message)
         repo.create_tag(tag, message=commit_message)
 

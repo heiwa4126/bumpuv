@@ -1,4 +1,5 @@
 import os
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -290,3 +291,89 @@ def test_dry_run_with_unstaged_changes(temp_project, capsys):
     # Check warning was printed
     captured = capsys.readouterr()
     assert "Warning: Repository has unstaged changes" in captured.out
+
+
+@pytest.fixture
+def temp_project_with_uv_lock():
+    """Create a temporary project with pyproject.toml, uv.lock and git repo."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        project_dir = Path(tmpdir) / "test_project"
+        project_dir.mkdir()
+
+        # Create pyproject.toml
+        pyproject_content = """[project]
+name = "test-project"
+version = "1.0.0"
+description = "Test project"
+"""
+        pyproject_path = project_dir / "pyproject.toml"
+        pyproject_path.write_text(pyproject_content)
+
+        # Create uv.lock
+        uv_lock_content = """version = 1
+requires-python = ">=3.10"
+
+[[package]]
+name = "test-project"
+version = "1.0.0"
+source = { editable = "." }
+"""
+        uv_lock_path = project_dir / "uv.lock"
+        uv_lock_path.write_text(uv_lock_content)
+
+        # Initialize git repo
+        repo = git.Repo.init(project_dir)
+        repo.index.add([str(pyproject_path), str(uv_lock_path)])
+        repo.index.commit("Initial commit")
+
+        # Change to project directory
+        original_cwd = os.getcwd()
+        os.chdir(project_dir)
+
+        try:
+            yield project_dir, repo
+        finally:
+            os.chdir(original_cwd)
+
+
+def test_version_bump_with_uv_lock(temp_project_with_uv_lock, monkeypatch):
+    """Test version bump with uv.lock present uses uv version command."""
+    project_dir, repo = temp_project_with_uv_lock
+
+    # Mock subprocess.run to simulate uv version command
+    import subprocess
+    
+    def mock_run(cmd, **kwargs):
+        if cmd == ["uv", "version", "1.0.1"]:
+            # Simulate uv version updating both files
+            with open("pyproject.toml", "r") as f:
+                content = f.read()
+            content = content.replace('version = "1.0.0"', 'version = "1.0.1"')
+            with open("pyproject.toml", "w") as f:
+                f.write(content)
+            
+            with open("uv.lock", "r") as f:
+                content = f.read()
+            content = content.replace('version = "1.0.0"', 'version = "1.0.1"')
+            with open("uv.lock", "w") as f:
+                f.write(content)
+            return subprocess.CompletedProcess(cmd, 0)
+        return subprocess.run(cmd, **kwargs)
+    
+    monkeypatch.setattr(subprocess, "run", mock_run)
+
+    result = update_version("patch")
+
+    assert result.old_version == "1.0.0"
+    assert result.new_version == "1.0.1"
+    assert result.commit_message == "1.0.1"
+    assert result.tag == "v1.0.1"
+
+    # Verify both files were updated
+    with open("pyproject.toml", "rb") as f:
+        data = tomllib.load(f)
+    assert data["project"]["version"] == "1.0.1"
+
+    # Verify git commit includes both files
+    assert repo.head.commit.message.strip() == "1.0.1"
+    assert "v1.0.1" in [tag.name for tag in repo.tags]
