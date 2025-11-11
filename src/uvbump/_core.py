@@ -2,7 +2,11 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import git
+from colorama import Fore, Style, init
 from packaging.version import InvalidVersion, Version
+
+# Initialize colorama
+init()
 
 try:
     import tomllib
@@ -82,13 +86,23 @@ def bump_version(current: Version, bump_type: str) -> Version:
         raise UvbumpError(f"Unknown bump type: {bump_type}")
 
 
-def check_git_status(repo: git.Repo) -> None:
+def check_git_status(repo: git.Repo, dry_run: bool = False) -> None:
     """Check git repository status."""
     if repo.is_dirty(untracked_files=False):
-        raise UvbumpError("Repository has unstaged changes")
+        if dry_run:
+            print(f"{Fore.YELLOW}Warning: Repository has unstaged changes{Style.RESET_ALL}")
+        else:
+            raise UvbumpError(
+                "Repository has unstaged changes. Please commit before running"
+            )
 
     if repo.index.diff("HEAD"):
-        raise UvbumpError("Repository has staged changes")
+        if dry_run:
+            print(f"{Fore.YELLOW}Warning: Repository has staged changes{Style.RESET_ALL}")
+        else:
+            raise UvbumpError(
+                "Repository has staged changes. Please commit before running"
+            )
 
 
 def update_version(new_version: str, dry_run: bool = False) -> VersionInfo:
@@ -122,12 +136,14 @@ def update_version(new_version: str, dry_run: bool = False) -> VersionInfo:
     except git.InvalidGitRepositoryError:
         raise UvbumpError("Not a git repository")
 
-    check_git_status(repo)
+    check_git_status(repo, dry_run)
 
     # Prepare version info
     new_version_str = str(new_version_obj)
     commit_message = new_version_str
-    tag_prefix = PRERELEASE_TAG_PREFIX if new_version_obj.is_prerelease else RELEASE_TAG_PREFIX
+    tag_prefix = (
+        PRERELEASE_TAG_PREFIX if new_version_obj.is_prerelease else RELEASE_TAG_PREFIX
+    )
     tag = f"{tag_prefix}{new_version_str}"
 
     version_info = VersionInfo(

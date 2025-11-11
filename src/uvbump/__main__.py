@@ -1,6 +1,10 @@
 import argparse
 import sys
+from colorama import Fore, Style, init
 from ._core import update_version, UvbumpError
+
+# Initialize colorama
+init()
 
 
 def main() -> None:
@@ -17,6 +21,7 @@ def main() -> None:
     )
 
     parser.add_argument(
+        "-n",
         "--dry-run",
         action="store_true",
         help="Show what would be done without making changes",
@@ -37,10 +42,10 @@ def main() -> None:
             print("(dry run - no changes made)")
 
     except UvbumpError as e:
-        print(f"Error: {e}", file=sys.stderr)
+        print(f"{Fore.RED}Error: {e}{Style.RESET_ALL}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
-        print(f"Unexpected error: {e}", file=sys.stderr)
+        print(f"{Fore.RED}Unexpected error: {e}{Style.RESET_ALL}", file=sys.stderr)
         sys.exit(1)
 
 

@@ -271,3 +271,22 @@ def test_invalid_version_error(temp_project):
 
     with pytest.raises(UvbumpError, match="Invalid version format"):
         update_version("invalid-version")
+
+
+def test_dry_run_with_unstaged_changes(temp_project, capsys):
+    """Test dry-run mode works with unstaged changes and shows warning."""
+    project_dir, repo = temp_project
+
+    # Modify existing file to create unstaged change
+    with open("pyproject.toml", "a") as f:
+        f.write("\n# test comment\n")
+
+    # Should work in dry-run mode and show warning
+    result = update_version("patch", dry_run=True)
+
+    assert result.old_version == "1.0.0"
+    assert result.new_version == "1.0.1"
+
+    # Check warning was printed
+    captured = capsys.readouterr()
+    assert "Warning: Repository has unstaged changes" in captured.out
