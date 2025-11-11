@@ -13,7 +13,10 @@ main = "uvbump"
 
 # ======== tests
 test = "pytest -v --tb=short src"
+test-py310 = "uv run --python 3.10 pytest -v --tb=short src"
+# ↑ for tomli module
 tests = ["test"]
+tests-all = ["test-py310", "test"]
 
 # ======== smoke tests
 smoke1 = "uv run --isolated --no-project --with dist/*.whl uvbump --help"
@@ -39,7 +42,7 @@ pack = "uv build"
 build = [
   "lint",
   # "format",
-  "tests",
+  "tests-all",
   # "actionlint",
   "clean",
   "pack",
