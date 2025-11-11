@@ -1,30 +1,34 @@
 [project]
 name = "uvbump"
-version = "0.0.4"
-# uv automatically converts versions to either:
-# - Regular releases: e.g. v1.2.3
-# - Pre-releases: e.g. v1.2.3rc1, v1.2.3b1, v1.2.3a1 (PEP 440 format)
-# So use PEP 440 format from the beginning
+version = "0.0.5"
 description = "Version bumping tool for Python projects using pyproject.toml, similar to npm version"
-keywords = ["version", "bump", "pyproject", "git", "release", "semver"]
+keywords = [
+    "version",
+    "bump",
+    "pyproject",
+    "git",
+    "release",
+    "semver",
+]
 classifiers = [
-  "License :: OSI Approved :: MIT License",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
 ]
 readme = "README.md"
-license.file = "LICENSE"
 authors = [
-  { name = "heiwa4126", email = "heiwa4126@gmail.com" },
+    { name = "heiwa4126", email = "heiwa4126@gmail.com" },
 ]
 requires-python = ">=3.10"
-
 dependencies = [
-  "GitPython>=3.1.0",
-  "packaging>=21.0",
-  "tomli>=2.0.0; python_version<'3.11'",
-  "tomli-w>=1.0.0",
+    "GitPython>=3.1.0",
+    "packaging>=21.0",
+    "tomli>=2.0.0; python_version<'3.11'",
+    "tomli-w>=1.0.0",
 ]
+
+[project.license]
+file = "LICENSE"
 
 [project.urls]
 Documentation = "https://github.com/heiwa4126/uvbump#readme"
@@ -35,25 +39,27 @@ Source = "https://github.com/heiwa4126/uvbump"
 uvbump = "uvbump.__main__:main"
 
 [build-system]
-requires = ["uv_build>=0.8.17,<0.9.0"]
+requires = [
+    "uv_build>=0.8.17,<0.9.0",
+]
 build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-  "mypy>=1.18.1",
-  "pep440check>=0.0.1",
-  "poethepoet>=0.37.0",
-  "pytest>=8.4.2",
-  "ruff>=0.13.0",
-  "validate-pyproject>=0.24.1",
+    "mypy>=1.18.1",
+    "pep440check>=0.0.1",
+    "poethepoet>=0.37.0",
+    "pytest>=8.4.2",
+    "ruff>=0.13.0",
+    "validate-pyproject>=0.24.1",
 ]
 
 [tool.uv.build-backend]
 source-exclude = [
-  "**/*_test.py",
-  "tests/**",
+    "**/*_test.py",
+    "tests/**",
 ]
 wheel-exclude = [
-  "**/*_test.py",
-  "tests/**",
+    "**/*_test.py",
+    "tests/**",
 ]
