@@ -19,7 +19,7 @@ readme = "README.md"
 authors = [
   { name = "heiwa4126", email = "heiwa4126@gmail.com" },
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 dependencies = [
   "GitPython>=3.1.0",
   "packaging>=21.0",
