@@ -218,14 +218,14 @@ wheels = [
 
 [[package]]
 name = "pep440check"
-version = "0.0.1"
+version = "0.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "packaging" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/26/e5/bd87788eb2a08b1dbeaa223dd6a1299d322ed292f81e5ec65c6ab454507d/pep440check-0.0.1.tar.gz", hash = "sha256:ead0ee3331cef3d1ea156c90e44965854a213058f3f614a240507927e257b5d6", size = 3749, upload-time = "2025-11-07T10:14:10.26Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ff/30/c469228a0d8b9f9a1be680bf9c04ef8896b89363d1a2873b58a06938f2d6/pep440check-0.0.2.tar.gz", hash = "sha256:f376c6b842e6964a06b4f65cdbd846d0f196fe56d833226914b74198fc582e8c", size = 3762, upload-time = "2025-11-12T02:12:26.887Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d3/12/25649b83ab7dfa35e1a82ee29d13e655b09ea027e3d1fe97a0e185a1269f/pep440check-0.0.1-py3-none-any.whl", hash = "sha256:7316b60f55ee2914994e9cfa8f6a5748fecec456e9b303301ee9b62335d3ff46", size = 4882, upload-time = "2025-11-07T10:14:09.123Z" },
+    { url = "https://files.pythonhosted.org/packages/92/57/8e4b958c3c44c6216289280aa1bb1f8e3df9b70945e7a4e50acc10a1c8e4/pep440check-0.0.2-py3-none-any.whl", hash = "sha256:d77f02c20781d72e2659d32390b00de5bad53e1917ab7c763148527aae96c403", size = 4884, upload-time = "2025-11-12T02:12:25.866Z" },
 ]
 
 [[package]]
