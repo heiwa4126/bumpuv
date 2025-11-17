@@ -40,8 +40,13 @@ poetry run bumpuv <オプション>
 ## 使用法
 
 ```console
-bumpuv [<newversion> | major | minor | patch | bump] [-n|--dry-run] [-h|--help]
+bumpuv [<newversion> | major | minor | patch | bump] [-n|--dry-run] [-V|--version] [-h|--help]
 ```
+
+### 引数
+
+- `<newversion>`: 明示的なバージョン指定（例: 1.2.3, 2.0.0a1, 1.0.0rc1）
+- `major | minor | patch | bump`: バージョン更新タイプ
 
 ### バージョン更新タイプ
 
@@ -54,6 +59,7 @@ bumpuv [<newversion> | major | minor | patch | bump] [-n|--dry-run] [-h|--help]
 ### オプション
 
 - `-n, --dry-run`: 実際の変更は行わず、何が実行されるかを表示。事前のコミット不要
+- `-V, --version`: バージョン情報を表示
 - `-h, --help`: ヘルプメッセージを表示
 
 ## 使用例

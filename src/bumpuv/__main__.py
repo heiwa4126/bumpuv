@@ -3,6 +3,7 @@ import sys
 
 from colorama import Fore, Style, init
 
+from . import __version__
 from ._core import bumpuvError, update_version
 
 # Initialize colorama
@@ -16,10 +17,16 @@ def main() -> None:
         description="Version bumping tool for Python projects using pyproject.toml",
     )
     parser.add_argument(
+        "-V",
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+    )
+    parser.add_argument(
         "version",
         nargs="?",
         default="bump",
-        help="Version to set or bump type (major|minor|patch|bump)",
+        help="Version to set (e.g., 1.2.3, 2.0.0a1) or bump type (major|minor|patch|bump)",
     )
 
     parser.add_argument(

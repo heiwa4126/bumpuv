@@ -39,8 +39,13 @@ poetry run bumpuv <options>
 ## Usage
 
 ```console
-bumpuv [<newversion> | major | minor | patch | bump] [-n|--dry-run] [-h|--help]
+bumpuv [<newversion> | major | minor | patch | bump] [-n|--dry-run] [-V|--version] [-h|--help]
 ```
+
+### Arguments
+
+- `<newversion>`: Explicit version specification (e.g., 1.2.3, 2.0.0a1, 1.0.0rc1)
+- `major | minor | patch | bump`: Version bump type
 
 ### Version Update Types
 
@@ -53,6 +58,7 @@ bumpuv [<newversion> | major | minor | patch | bump] [-n|--dry-run] [-h|--help]
 ### Options
 
 - `-n, --dry-run`: Show what would be done without making changes. No prior commit required
+- `-V, --version`: Show version information
 - `-h, --help`: Show help message
 
 ## Examples
