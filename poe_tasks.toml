@@ -19,8 +19,8 @@ tests = ["test"]
 tests-all = ["test-py310", "test"]
 
 # ======== smoke tests
-smoke1 = "uv run --isolated --no-project --with dist/*.whl bumpuv --help"
-smoke2 = "uv run --isolated --no-project --with dist/*.tar.gz bumpuv --help"
+smoke1 = "uv run --isolated --no-project --refresh --with dist/*.whl bumpuv --version"
+smoke2 = "uv run --isolated --no-project --refresh --with dist/*.tar.gz bumpuv --help"
 smoketest = ["smoke1", "smoke2"]
 
 # ======== lint
