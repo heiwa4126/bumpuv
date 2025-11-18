@@ -27,7 +27,6 @@ jobs:
     name: Publish to PyPI
     runs-on: ubuntu-latest
     needs: build
-    # Only run if pushed by repository owner and build succeeded
     if: needs.build.outputs.package-built == 'true'
     environment: pypi
     permissions:
