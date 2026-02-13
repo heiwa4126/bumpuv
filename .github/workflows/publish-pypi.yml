@@ -27,8 +27,12 @@ jobs:
       contents: read
 
     steps:
-      - name: Build and publish package to TestPyPI
-        uses: heiwa4126/reusable-workflows/build-uv-package@4549f4cef81191ccd76d799ee23cc5a2d59cbc89 # v0.0.5
+      - name: Set up git user
+        # テストコードにgit操作があるので、CI用のユーザを設定する
+        uses: heiwa4126/reusable-workflows/set-up-git-user@c865af23b355ea9d1865b589b9b261ce45c574a7 # v0.0.7
+
+      - name: Build and publish package to PyPI
+        uses: heiwa4126/reusable-workflows/build-uv-package@c865af23b355ea9d1865b589b9b261ce45c574a7 # v0.0.7
         with:
           checkout: true
 
