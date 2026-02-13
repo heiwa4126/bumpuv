@@ -26,16 +26,16 @@ jobs:
       contents: read
 
     steps:
-      - name: Build and publish package to TestPyPI
-        uses: heiwa4126/reusable-workflows/build-uv-package@4549f4cef81191ccd76d799ee23cc5a2d59cbc89 # v0.0.5
-        with:
-          checkout: true
-
       - name: Set up git user
         # テストコードにgit操作があるので、CI用のユーザを設定しておく
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
+
+      - name: Build and publish package to TestPyPI
+        uses: heiwa4126/reusable-workflows/build-uv-package@4549f4cef81191ccd76d799ee23cc5a2d59cbc89 # v0.0.5
+        with:
+          checkout: true
 
       - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
