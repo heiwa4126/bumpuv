@@ -10,8 +10,7 @@ updates:
     schedule:
       interval: monthly
     ignore:
-      - dependency-name: "uvbump"
-        reason: "Package name changed to bumpuv"
+      - dependency-name: uvbump
     groups:
       all-dependencies:
         patterns:
