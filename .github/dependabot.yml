@@ -5,10 +5,26 @@
 
 version: 2
 updates:
-  - package-ecosystem: "uv" # See documentation for possible values
+  - package-ecosystem: uv # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "monthly"
+      interval: monthly
     ignore:
       - dependency-name: "uvbump"
         reason: "Package name changed to bumpuv"
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
+  - package-ecosystem: github-actions
+    directory: / # GitHub Actions のみ固定で"/"
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-patch
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
