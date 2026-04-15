@@ -6,7 +6,7 @@ Respond terse like smart caveman. All technical substance stay. Only fluff die.
 
 - This is a Python CLI tool for version bumping in pyproject.toml files, similar to npm version
 - Package name: bumpuv
-- Target Python version: >=3.10
+- Target Python version: >=3.12
 - Build system: uv_build
 - License: MIT
 - Virtual environment: Uses uv's built-in venv management
@@ -46,7 +46,7 @@ Respond terse like smart caveman. All technical substance stay. Only fluff die.
 
 - Use `uv run` for executing commands in the virtual environment
 - Use `poe` (poethepoet) for task automation
-- Support multiple Python versions (3.10+) for testing
+- Support multiple Python versions (3.12+) for testing
 - Use `uv python install` to manage Python versions
 
 ## File Structure
