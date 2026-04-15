@@ -42,22 +42,17 @@ pack = "uv build"
 
 # ======== build
 build = [
-  "lint",
-  # "format",
-  "tests-all",
-  # "actionlint",
-  "clean",
-  "pack",
-  "smoke_test",
+	"lint",
+	# "format",
+	"tests-all",
+	# "actionlint",
+	"clean",
+	"pack",
+	"smoke_test",
 ]
 
 # ======== utils
-format.shell = """
-ruff format &&
-# biome format --write . &&
-dprint fmt --config ~/dprint.json &&
-textlint --fix "**/*.md"
-"""
+format.shell = "ruff format && oxfmt"
 
 update.shell = "uv lock -U && uv sync"
 

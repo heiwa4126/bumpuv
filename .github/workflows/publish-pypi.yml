@@ -29,10 +29,10 @@ jobs:
     steps:
       - name: Set up git user
         # テストコードにgit操作があるので、CI用のユーザを設定する
-        uses: heiwa4126/reusable-workflows/set-up-git-user@f1d72b6c8ae078c37a2820f29e0bef978013a120 # v0.0.10
+        uses: heiwa4126/reusable-workflows/set-up-git-user@3a81d77b668105e8e3979c26fa68befcc3dfce6e # v0.0.11
 
       - name: Build and publish package to PyPI
-        uses: heiwa4126/reusable-workflows/build-uv-package@f1d72b6c8ae078c37a2820f29e0bef978013a120 # v0.0.10
+        uses: heiwa4126/reusable-workflows/build-uv-package@3a81d77b668105e8e3979c26fa68befcc3dfce6e # v0.0.11
         with:
           checkout: true
 
