@@ -6,7 +6,7 @@ keywords = ["version", "bump", "pyproject", "git", "release", "semver"]
 classifiers = ["Operating System :: OS Independent", "Programming Language :: Python :: 3"]
 readme = "README.md"
 authors = [{ name = "heiwa4126", email = "heiwa4126@gmail.com" }]
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE"]
 dependencies = [
@@ -34,7 +34,7 @@ dev = [
 	"mypy>=1.18.1",
 	"pep440check>=0.0.1",
 	"poethepoet>=0.37.0",
-	"pytest>=8.4.2",
+	"pytest>=9.0.3",
 	"ruff>=0.13.0",
 	"types-colorama>=0.4.15.20250801",
 	"validate-pyproject>=0.24.1",
