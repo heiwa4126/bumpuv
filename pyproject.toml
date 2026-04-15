@@ -1,6 +1,6 @@
 [project]
 name = "bumpuv"
-version = "0.0.6"
+version = "0.0.7"
 description = "Version bumping tool for Python projects using pyproject.toml, similar to npm version"
 keywords = ["version", "bump", "pyproject", "git", "release", "semver"]
 classifiers = ["Operating System :: OS Independent", "Programming Language :: Python :: 3"]
