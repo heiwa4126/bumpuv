@@ -55,6 +55,7 @@ build = [
 format.shell = "ruff format && oxfmt"
 
 update.shell = "uv lock -U && uv sync"
+version = "uv version"
 
 uvsync = "uv sync"
 requirements = "uv pip compile pyproject.toml --no-deps -o requirements.txt"
