@@ -53,7 +53,7 @@ def main() -> None:
     except bumpuvError as e:
         print(f"{Fore.RED}Error: {e}{Style.RESET_ALL}", file=sys.stderr)
         sys.exit(1)
-    except Exception as e:
+    except (OSError, ValueError, TypeError) as e:
         print(f"{Fore.RED}Unexpected error: {e}{Style.RESET_ALL}", file=sys.stderr)
         sys.exit(1)
 

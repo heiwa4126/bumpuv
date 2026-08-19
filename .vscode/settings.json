@@ -8,5 +8,15 @@
 		"shunsuke",
 		"Sigstore",
 		"testpypi"
-	]
+	],
+	"chat.tools.terminal.autoApprove": {
+		"/^poe check$/": {
+			"approve": true,
+			"matchCommandLine": true
+		},
+		"/^poe test$/": {
+			"approve": true,
+			"matchCommandLine": true
+		}
+	}
 }
