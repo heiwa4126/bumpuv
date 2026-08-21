@@ -48,7 +48,7 @@ build = [
 	# "actionlint",
 	"clean",
 	"pack",
-	"smoke_test",
+	"smoke_test"
 ]
 
 # ======== utils
