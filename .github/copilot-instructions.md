@@ -67,4 +67,4 @@ Respond terse like smart caveman. All technical substance stay. Only fluff die.
 ## Code Review Rules
 
 - Exclude files and directories specified in .gitignore from code reviews
-- Skip scanning: **pycache**/, _.py[oc], build/, dist/, wheels/, *.egg-info, .venv, .env*, .ruff_cache/, .mypy_cache/, .pytest_cache/, tmp/, _.tmp, \*.dump
+- Skip scanning: **pycache**/, _.py[oc], build/, dist/, wheels/, _.egg-info, .venv, .env_, .ruff_cache/, .mypy_cache/, .pytest_cache/, tmp/, _.tmp, \*.dump
